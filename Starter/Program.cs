@@ -140,7 +140,32 @@ do
                     dogCharacteristic = readResult.ToLower().Trim();
                 }
             }
-            Console.WriteLine("Press the Enter key to continue.");
+
+            string dogDescription = "";
+            bool noMatchDog = true;
+            // #6 loop through the ourAnimals array to search for matching animals
+            for (int i = 0; i < maxPets; i++)
+            {
+                if (ourAnimals[i, 1].Contains("dog"))
+                {
+                    // #7 Search combined description and report results
+                    dogDescription = ourAnimals[i, 4] + "\n" + ourAnimals[i, 5];
+
+                    if (dogDescription.Contains(dogCharacteristic))
+                    {
+                        Console.WriteLine($"\nOur dog {ourAnimals[i, 3]} is a match!");
+                        Console.WriteLine(dogDescription);
+
+                        noMatchDog = false;
+                    }
+                }
+            }
+            if (noMatchDog)
+            {
+                Console.WriteLine("None of our dogs are a match found for: " + dogCharacteristic);
+            }
+
+            Console.WriteLine("\n\rPress the Enter key to continue.");
             readResult = Console.ReadLine();
             break;
 
